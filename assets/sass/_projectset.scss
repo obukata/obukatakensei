@@ -1,0 +1,69 @@
+// Project Settings
+@import "util/baseset";
+
+//* ==================================================
+//	FontSet
+//================================================== */
+@mixin fontset_html_ja {
+  font-size: 62.5%; // = 10px = 1rem
+	font-family: $fontSansJa;
+  line-height: 1.6;
+}
+
+@mixin fontset_body_ja {
+	font-size: 14px;
+	font-size: 1.4em; // = 14px
+	// if you use 'rem' bug occurred in chrome
+}
+
+@mixin fontset_html_en {
+  font-size: 62.5%; // = 10px = 1rem
+	font-family: $fontSansEn;
+  line-height: 1.6;
+}
+
+@mixin fontset_body_en {
+	font-size: 14px;
+	font-size: 1.4em; // = 12px
+	// if you use 'rem' bug occurred in chrome
+}
+
+
+//* ==================================================
+//	Contents Width
+//================================================== */
+$InnerMinWidth_op: 1184px;
+$InnerMinWidth: 920px;
+$InnerMaxWidth_tb: 768px;
+$InnerMaxWidth_sp: 560px;
+$InnerMaxWidth_iPhone678: 375px;
+$InnerMinWidth_sp: 320px;
+
+// IEhack
+$IEScrollbar: 17px;
+
+
+//* ==================================================
+//	Color Scheme
+//================================================== */
+
+// base color
+$white: #ffffff;
+$black: #000000;
+$gray: #cccccc;
+$darkgray: #333333;
+$signupRed: #ff5d54;
+
+
+// whiteTheme
+$whiteTheme-white: #f7f7f7;
+$whiteTheme-blue: #5361b6;
+
+
+//* ==================================================
+//	trantion
+//================================================== */
+$fast: 200ms;
+$middle: 400ms;
+$slow: 1000ms;
+$superslow: 2000ms;
