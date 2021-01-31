@@ -24,7 +24,7 @@
 	const BOX_WIDTH = 40
 	const BOX_HEIGHT = 40
 	const BOX_DEPTH = 40
-	const BOX_MARGIN = 40
+	const BOX_MARGIN = 80
 	const MESH_COLUMN_COUNT = 30
 	const MESH_ROW_COUNT = 15
 
@@ -32,10 +32,11 @@
 	// const MESH_ROW_COUNT = 1
 	const group = new THREE.Group()
 
-	const geometry = new THREE.BoxGeometry(BOX_WIDTH, BOX_HEIGHT, BOX_DEPTH)
-	const material = new THREE.MeshToonMaterial({ color: 0xa9b5fe })
+	// const geometry = new THREE.BoxGeometry(BOX_WIDTH, BOX_HEIGHT, BOX_DEPTH)
+	const geometry = new THREE.ConeGeometry(40, 80, 64)
+	// const material = new THREE.MeshToonMaterial({ color: 0xa9b5fe })
 	// const material = new THREE.MeshNormalMaterial({ wireframe: true })
-	// const material = new THREE.MeshNormalMaterial()
+	const material = new THREE.MeshNormalMaterial()
 	// const material = new THREE.MeshMatcapMaterial({ color: 0xa9b5fe })
 	// const material = new THREE.MeshLambertMaterial({ color: 0xa9b5fe })
 
@@ -87,9 +88,9 @@
 					meshArray[i][j].rotation.y += (((200 - distance) * Math.PI / 180) - meshArray[i][j].rotation.y) * 0.1
 					meshArray[i][j].rotation.z += (((200 - distance) * Math.PI / 180) - meshArray[i][j].rotation.z) * 0.1
 					// meshArray[i][j].position.z += (300 - meshArray[i][j].position.z) * 0.1
-					meshArray[i][j].scale.x += ((200 - distance) / 40 - meshArray[i][j].scale.x) * 0.1
-					meshArray[i][j].scale.y += ((200 - distance) / 40 - meshArray[i][j].scale.y) * 0.1
-					meshArray[i][j].scale.z += ((200 - distance) / 40 - meshArray[i][j].scale.z) * 0.1
+					meshArray[i][j].scale.x += ((200 - distance) / 60 - meshArray[i][j].scale.x) * 0.1
+					meshArray[i][j].scale.y += ((200 - distance) / 60 - meshArray[i][j].scale.y) * 0.1
+					meshArray[i][j].scale.z += ((200 - distance) / 60 - meshArray[i][j].scale.z) * 0.1
 				}else {
 					meshArray[i][j].rotation.x += (0 - meshArray[i][j].rotation.x) * 0.1
 					meshArray[i][j].rotation.y += (0 - meshArray[i][j].rotation.y) * 0.1
