@@ -2,7 +2,7 @@
 	"scripts": {
 		"watch": "npm run watch:sass & npm run watch:server",
 		"watch:sass": "sass --watch assets/sass/core.scss assets/styles/core.css",
-		"watch:server": "browser-sync start --server --files './*, ./*/*, ./assets/styles/*.css, ./assets/images/*', ./assets/styles/*.css, ./assets/scripts/*.js'"
+		"watch:server": "browser-sync start --server --files './*, ./*/*, ./assets/styles/*.css, ./assets/images/*, ./assets/styles/*.css, ./assets/scripts/*.js'"
 	},
 	"devDependencies": {
 		"browser-sync": "^2.26.13",

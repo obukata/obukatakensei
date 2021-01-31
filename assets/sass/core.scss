@@ -17,8 +17,8 @@ html,body {
 	width: 100%;
 	min-width: 320px;
 	height: auto;
-	color: $black;
-	letter-spacing: 0.08em;
+	color: $whiteTheme-blue;
+	letter-spacing: 0.035em;
 	-webkit-text-size-adjust: 100%;
 	line-height: 2;
 	font-weight: 400;
@@ -26,7 +26,6 @@ html,body {
 	font-feature-settings: 'palt' 1;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	font-family: 'Noto Sans JP', sans-serif;
 }
 a,
 button {
@@ -78,10 +77,18 @@ html[lang="en"] {
 //	Common Layout
 //================================================== */
 
+body {
+	background: url(/assets/images/_dummy.png) no-repeat left top;
+	// height: 4000px;
+	width: 2560px;
+}
+
 //* page-wrap
 //*------------------------------------------------------------------------------*/
 
 .page-wrap {
+	background: $whiteTheme-white;
+	position: relative;
 }
 @media (max-width: $InnerMinWidth), (-ms-high-contrast:none) and (max-width: $InnerMinWidth + $IEScrollbar) {
 	.page-wrap {
@@ -100,6 +107,34 @@ html[lang="en"] {
 //*------------------------------------------------------------------------------*/
 
 .page-header {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 1000;
+	.header-body {
+		padding: 30px 30px;
+		display: flex;
+		justify-content: space-between;
+	}
+	.header-logo {
+		font-size: 1.7rem;
+		line-height: 1;
+	}
+	.header-nav {
+	}
+	.header-nav-icon {
+		height: 14px;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		div {
+			width: 17px;
+			height: 2px;
+			border-radius: 10000px;
+			background: $whiteTheme-blue;
+		}
+	}
 }
 @media (max-width: $InnerMinWidth_op), (-ms-high-contrast:none) and (max-width: $InnerMinWidth_op + $IEScrollbar) {
 	.page-header {
@@ -115,15 +150,12 @@ html[lang="en"] {
 }
 
 
-//* page-toplink
-//*------------------------------------------------------------------------------*/
-.page-toplink {
-}
-
 //* page-footer
 //*------------------------------------------------------------------------------*/
 
 .page-footer {
+	.footer-copyright {
+	}
 }
 @media (max-width: $InnerMaxWidth_sp), (-ms-high-contrast:none) and (max-width: $InnerMaxWidth_sp + $IEScrollbar) {
 	.page-footer {
@@ -164,9 +196,19 @@ html[lang="en"] {
 .style--block {
 	display: block;
 }
-.style--font-bold {
+.style--font-light {
+	font-weight: 300;
+}
+.style--font-book {
+	font-weight: 400;
+}
+.style--font-heavy {
 	font-weight: 700;
 }
+.style--font-exbold {
+	font-weight: 800;
+}
+
 .style--column {
 	display: flex;
 	flex-wrap: wrap;
@@ -199,16 +241,6 @@ html[lang="en"] {
 	&:hover {
 		text-decoration: none;
 	}
-}
-
-.style--text-danger {
-	color: red;
-}
-.style--text-success {
-	color: $blue;
-}
-.style--text-caution {
-	color: $pink;
 }
 
 .style--font-en {
