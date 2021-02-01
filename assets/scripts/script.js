@@ -24,41 +24,46 @@
 	const BOX_WIDTH = 40
 	const BOX_HEIGHT = 40
 	const BOX_DEPTH = 40
-	const BOX_MARGIN = 80
-	const MESH_COLUMN_COUNT = 30
-	const MESH_ROW_COUNT = 15
+	const BOX_MARGIN = 100
+	const MESH_COLUMN_COUNT = 16
+	const MESH_ROW_COUNT = 8
 
 	// const MESH_COLUMN_COUNT = 1
 	// const MESH_ROW_COUNT = 1
 	const group = new THREE.Group()
 
-	// const geometry = new THREE.BoxGeometry(BOX_WIDTH, BOX_HEIGHT, BOX_DEPTH)
-	const geometry = new THREE.ConeGeometry(40, 80, 64)
-	// const material = new THREE.MeshToonMaterial({ color: 0xa9b5fe })
-	// const material = new THREE.MeshNormalMaterial({ wireframe: true })
-	const material = new THREE.MeshNormalMaterial()
-	// const material = new THREE.MeshMatcapMaterial({ color: 0xa9b5fe })
-	// const material = new THREE.MeshLambertMaterial({ color: 0xa9b5fe })
+	const geometry = [
+		new THREE.BoxGeometry(BOX_WIDTH, BOX_HEIGHT, BOX_DEPTH),
+		new THREE.ConeGeometry(BOX_WIDTH, BOX_HEIGHT * 2, 64),
+	]
+	const material = [
+		new THREE.MeshToonMaterial({ color: 0xa9b5fe }),
+		new THREE.MeshNormalMaterial({ wireframe: true }),
+		new THREE.MeshNormalMaterial(),
+		new THREE.MeshMatcapMaterial({ color: 0xa9b5fe }),
+		new THREE.MeshLambertMaterial({ color: 0xa9b5fe })
+	]
 
 	for(let i = 0; i < MESH_ROW_COUNT; i ++) {
 		meshArray[i] = []
 		for(let j = 0; j < MESH_COLUMN_COUNT; j++) {
-			meshArray[i][j] = new THREE.Mesh(geometry, material)
-			meshArray[i][j].position.set(
-				(j * BOX_WIDTH) + (j * BOX_MARGIN) - (((MESH_COLUMN_COUNT - 1) * BOX_WIDTH + (MESH_COLUMN_COUNT - 1) * BOX_MARGIN) / 2),
-				(i * BOX_HEIGHT) + (i * BOX_MARGIN) - (((MESH_ROW_COUNT - 1) * BOX_HEIGHT + (MESH_ROW_COUNT - 1) * BOX_MARGIN) / 2),
-				0
-			)
+			meshArray[i][j] = new THREE.Mesh(geometry[randRange(0, geometry.length - 1)], material[randRange(0, material.length - 1)])
+			if(i % 2) {
+				meshArray[i][j].position.set(
+					(j * BOX_WIDTH) + (j * BOX_MARGIN) - (((MESH_COLUMN_COUNT - 1) * BOX_WIDTH + (MESH_COLUMN_COUNT - 1) * BOX_MARGIN) / 2),
+					(i * BOX_HEIGHT) + (i * BOX_MARGIN) - (((MESH_ROW_COUNT - 1) * BOX_HEIGHT + (MESH_ROW_COUNT - 1) * BOX_MARGIN) / 2),
+					0
+				)
+			}else {
+				meshArray[i][j].position.set(
+					((j * BOX_WIDTH) + (j * BOX_MARGIN) - (((MESH_COLUMN_COUNT - 1) * BOX_WIDTH + (MESH_COLUMN_COUNT - 1) * BOX_MARGIN) / 2)) - ((BOX_WIDTH + BOX_MARGIN) / 2),
+					(i * BOX_HEIGHT) + (i * BOX_MARGIN) - (((MESH_ROW_COUNT - 1) * BOX_HEIGHT + (MESH_ROW_COUNT - 1) * BOX_MARGIN) / 2),
+					0
+				)
+			}
 			group.add(meshArray[i][j])
 		}
 	}
-	console.log(meshArray[0][0].position)
-
-	// group.position.set(
-	// 	-((BOX_WIDTH / 2 + BOX_MARGIN / 2) * (MESH_COLUMN_COUNT - 1)),
-	// 	-((BOX_HEIGHT / 2 + BOX_MARGIN / 2) * (MESH_ROW_COUNT - 1)),
-	// 	0
-	// )
 	scene.add(group)
 
 	window.addEventListener('DOMContentLoaded', () => {
@@ -69,11 +74,11 @@
 	}, false)
 
 
-	function initialize() {
+	const initialize = () => {
 
 	}
 
-	function animate() {
+	const animate = () => {
 		requestAnimationFrame(animate)
 
 		for(let i = 0; i < MESH_ROW_COUNT; i ++) {
@@ -87,15 +92,13 @@
 					meshArray[i][j].rotation.x += (((200 - distance) * Math.PI / 180) - meshArray[i][j].rotation.x) * 0.1
 					meshArray[i][j].rotation.y += (((200 - distance) * Math.PI / 180) - meshArray[i][j].rotation.y) * 0.1
 					meshArray[i][j].rotation.z += (((200 - distance) * Math.PI / 180) - meshArray[i][j].rotation.z) * 0.1
-					// meshArray[i][j].position.z += (300 - meshArray[i][j].position.z) * 0.1
-					meshArray[i][j].scale.x += ((200 - distance) / 60 - meshArray[i][j].scale.x) * 0.1
-					meshArray[i][j].scale.y += ((200 - distance) / 60 - meshArray[i][j].scale.y) * 0.1
-					meshArray[i][j].scale.z += ((200 - distance) / 60 - meshArray[i][j].scale.z) * 0.1
+					meshArray[i][j].scale.x += ((200 - distance) / 30 - meshArray[i][j].scale.x) * 0.1
+					meshArray[i][j].scale.y += ((200 - distance) / 30 - meshArray[i][j].scale.y) * 0.1
+					meshArray[i][j].scale.z += ((200 - distance) / 30 - meshArray[i][j].scale.z) * 0.1
 				}else {
 					meshArray[i][j].rotation.x += (0 - meshArray[i][j].rotation.x) * 0.1
 					meshArray[i][j].rotation.y += (0 - meshArray[i][j].rotation.y) * 0.1
 					meshArray[i][j].rotation.z += (0 - meshArray[i][j].rotation.z) * 0.1
-					// meshArray[i][j].position.z += (0 - meshArray[i][j].position.z) * 0.1
 					meshArray[i][j].scale.x += (0.4 - meshArray[i][j].scale.x) * 0.1
 					meshArray[i][j].scale.y += (0.4 - meshArray[i][j].scale.y) * 0.1
 					meshArray[i][j].scale.z += (0.4 - meshArray[i][j].scale.z) * 0.1
@@ -108,7 +111,7 @@
 	}
 
 	const mouse = new THREE.Vector2(0, 0)
-	function mouseMoved(x, y) {
+	const mouseMoved = (x, y) => {
 		if(x && y) {
 			mouse.x = x - (target.clientWidth / 2)
 			mouse.y = -y + (target.clientHeight / 2)
@@ -120,5 +123,9 @@
 	targetArea.addEventListener('mousemove', e => {
 		mouseMoved(e.offsetX, e.offsetY)
 	})
+
+	function randRange(min, max) {
+		return Math.floor(Math.random() * (max - min + 1) + min)
+	}
 
 })()
