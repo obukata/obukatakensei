@@ -8,6 +8,7 @@
 @import "lib/slick";
 @import "lib/slick-theme";
 @import "lib/animate.min";
+@import "lib/locomotive-scroll.min";
 
 
 //* ==================================================
@@ -20,7 +21,7 @@ html,body {
 	color: $whiteTheme-blue;
 	letter-spacing: 0.035em;
 	-webkit-text-size-adjust: 100%;
-	line-height: 2;
+	line-height: 1.2;
 	font-weight: 400;
 	-webkit-font-feature-settings: 'palt' 1;
 	font-feature-settings: 'palt' 1;
@@ -78,7 +79,7 @@ html[lang="en"] {
 //================================================== */
 
 body {
-	background: url(/assets/images/_dummy.png) no-repeat left top;
+	// background: url(/assets/images/_dummy.png) no-repeat left -225px;
 	// height: 4000px;
 	width: 2560px;
 }
@@ -87,7 +88,7 @@ body {
 //*------------------------------------------------------------------------------*/
 
 .page-wrap {
-	background: $whiteTheme-white;
+	// background: $whiteTheme-white;
 	position: relative;
 }
 @media (max-width: $InnerMinWidth), (-ms-high-contrast:none) and (max-width: $InnerMinWidth + $IEScrollbar) {
@@ -165,6 +166,8 @@ body {
 //* page-main
 //*------------------------------------------------------------------------------*/
 .page-main {
+	display: flex;
+
 }
 @media (max-width: $InnerMinWidth_op), (-ms-high-contrast:none) and (max-width: $InnerMinWidth_op + $IEScrollbar) {
 	.page-main {

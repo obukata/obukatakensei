@@ -4160,6 +4160,93 @@ select {
   animation-name: slideOutUp;
 }
 
+/*! locomotive-scroll v4.0.6 | MIT License | https://github.com/locomotivemtl/locomotive-scroll */
+html.has-scroll-smooth {
+  overflow: hidden;
+}
+
+html.has-scroll-dragging {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.has-scroll-smooth body {
+  overflow: hidden;
+}
+
+.has-scroll-smooth [data-scroll-container] {
+  min-height: 100vh;
+}
+
+[data-scroll-direction=horizontal] [data-scroll-container] {
+  height: 100vh;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+[data-scroll-direction=horizontal] [data-scroll-section] {
+  display: inline-block;
+  vertical-align: top;
+  white-space: nowrap;
+  height: 100%;
+}
+
+.c-scrollbar {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 11px;
+  height: 100%;
+  transform-origin: center right;
+  transition: transform 0.3s, opacity 0.3s;
+  opacity: 0;
+}
+
+.c-scrollbar:hover {
+  transform: scaleX(1.45);
+}
+
+.c-scrollbar:hover, .has-scroll-dragging .c-scrollbar, .has-scroll-scrolling .c-scrollbar {
+  opacity: 1;
+}
+
+[data-scroll-direction=horizontal] .c-scrollbar {
+  width: 100%;
+  height: 10px;
+  top: auto;
+  bottom: 0;
+  transform: scaleY(1);
+}
+
+[data-scroll-direction=horizontal] .c-scrollbar:hover {
+  transform: scaleY(1.3);
+}
+
+.c-scrollbar_thumb {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #000;
+  opacity: 0.5;
+  width: 7px;
+  border-radius: 10px;
+  margin: 2px;
+  cursor: -webkit-grab;
+  cursor: grab;
+}
+
+.has-scroll-dragging .c-scrollbar_thumb {
+  cursor: -webkit-grabbing;
+  cursor: grabbing;
+}
+
+[data-scroll-direction=horizontal] .c-scrollbar_thumb {
+  right: auto;
+  bottom: 0;
+}
+
 html, body {
   width: 100%;
   min-width: 320px;
@@ -4167,7 +4254,7 @@ html, body {
   color: #5361b6;
   letter-spacing: 0.035em;
   -webkit-text-size-adjust: 100%;
-  line-height: 2;
+  line-height: 1.2;
   font-weight: 400;
   -webkit-font-feature-settings: "palt" 1;
   font-feature-settings: "palt" 1;
@@ -4231,12 +4318,10 @@ html[lang=en] body {
   }
 }
 body {
-  background: url(/assets/images/_dummy.png) no-repeat left top;
   width: 2560px;
 }
 
 .page-wrap {
-  background: #f7f7f7;
   position: relative;
 }
 
@@ -4267,6 +4352,10 @@ body {
   height: 2px;
   border-radius: 10000px;
   background: #5361b6;
+}
+
+.page-main {
+  display: flex;
 }
 
 .style--inlineblock {
@@ -4737,8 +4826,77 @@ body {
   height: 100%;
   z-index: -1;
 }
-.mainvisual .mainvisual-canvas canvas {
-  opacity: 0.3;
+.works {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+.works .works-upper-text,
+.works .works-lower-text {
+  font-size: 19rem;
+  -webkit-text-stroke: 1px #5361b6;
+  -webkit-text-fill-color: transparent;
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 100%;
+}
+.works .works-upper-text {
+  top: 0;
+}
+.works .works-lower-text {
+  bottom: 0;
+}
+.works .works-list {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.works .works-item {
+  width: 50%;
+  position: relative;
+}
+.works .works-item-head {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.works .works-item-title {
+  font-size: 13rem;
+  font-weight: 600;
+  position: relative;
+}
+.works .works-item-title::before {
+  content: "01";
+  position: absolute;
+  top: -30px;
+  left: -10px;
+  font-size: 1.2rem;
+}
+.works .works-item-text {
+  font-size: 5.4rem;
+  text-align: right;
+}
+.works .works-item-image {
+  width: 600px;
+  margin: auto;
+}
+.works .works-item-image-body {
+  height: 0;
+  padding-top: 66.66666667%;
+  background: #000;
 }
 
 /*# sourceMappingURL=core.css.map */
