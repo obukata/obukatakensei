@@ -27,6 +27,9 @@ html,body {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
+* {
+	box-sizing: border-box;
+}
 a,
 button {
 	color: $black;
@@ -80,15 +83,16 @@ html[lang="en"] {
 body {
 	// background: url(/assets/images/_dummy.png) no-repeat left -225px;
 	// height: 4000px;
-	width: 2560px;
+	// width: 2560px;
 }
 
 //* page-wrap
 //*------------------------------------------------------------------------------*/
 
 .page-wrap {
-	// background: $whiteTheme-white;
+	background: $whiteTheme-white;
 	position: relative;
+	overflow: hidden;
 }
 @media (max-width: $InnerMinWidth), (-ms-high-contrast:none) and (max-width: $InnerMinWidth + $IEScrollbar) {
 	.page-wrap {
@@ -138,6 +142,9 @@ body {
 }
 @media (max-width: $InnerMinWidth_op), (-ms-high-contrast:none) and (max-width: $InnerMinWidth_op + $IEScrollbar) {
 	.page-header {
+		.header-body {
+			padding: 16px;
+		}
 	}
 }
 @media (max-width: $InnerMinWidth), (-ms-high-contrast:none) and (max-width: $InnerMinWidth + $IEScrollbar) {
@@ -163,7 +170,6 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	z-index: -1;
 	.footer-copyright {
 		transform: rotate(90deg);
 		white-space: nowrap;
@@ -172,6 +178,13 @@ body {
 }
 @media (max-width: $InnerMaxWidth_sp), (-ms-high-contrast:none) and (max-width: $InnerMaxWidth_sp + $IEScrollbar) {
 	.page-footer {
+		position: static;
+		width: 100%;
+		padding: 16px;
+		.footer-copyright {
+			transform: rotate(0deg);
+			white-space: normal;
+		}
 	}
 }
 
@@ -233,6 +246,12 @@ body {
 				}
 			}
 		}
+	}
+}
+@media (max-width: $InnerMaxWidth_sp), (-ms-high-contrast:none) and (max-width: $InnerMaxWidth_sp + $IEScrollbar) {
+	.page-aside {
+		position: static;
+		padding: 16px;
 	}
 }
 

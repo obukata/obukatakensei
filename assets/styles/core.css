@@ -4175,6 +4175,10 @@ html, body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 a,
 button {
   color: #000000;
@@ -4230,12 +4234,10 @@ html[lang=en] body {
     font-size: 1.2rem;
   }
 }
-body {
-  width: 2560px;
-}
-
 .page-wrap {
+  background: #f7f7f7;
   position: relative;
+  overflow: hidden;
 }
 
 .page-header {
@@ -4267,6 +4269,11 @@ body {
   background: #5361b6;
 }
 
+@media (max-width: 1184px), (-ms-high-contrast: none) and (max-width: 1201px) {
+  .page-header .header-body {
+    padding: 16px;
+  }
+}
 .page-footer {
   position: absolute;
   top: 0;
@@ -4277,13 +4284,23 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: -1;
 }
 .page-footer .footer-copyright {
   transform: rotate(90deg);
   white-space: nowrap;
 }
 
+@media (max-width: 560px), (-ms-high-contrast: none) and (max-width: 577px) {
+  .page-footer {
+    position: static;
+    width: 100%;
+    padding: 16px;
+  }
+  .page-footer .footer-copyright {
+    transform: rotate(0deg);
+    white-space: normal;
+  }
+}
 .page-aside {
   position: absolute;
   top: 80px;
@@ -4318,6 +4335,12 @@ body {
   width: 100%;
 }
 
+@media (max-width: 560px), (-ms-high-contrast: none) and (max-width: 577px) {
+  .page-aside {
+    position: static;
+    padding: 16px;
+  }
+}
 .style--inlineblock {
   display: inline-block;
 }
@@ -4733,7 +4756,7 @@ body {
   z-index: 1;
 }
 .mainvisual .mainvisual-title {
-  font-size: 29rem;
+  font-size: 11.3vw;
   line-height: 0.885;
   letter-spacing: 0.02em;
   text-align: center;

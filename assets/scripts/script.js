@@ -1,5 +1,7 @@
 (function() {
 
+	let windowWidth = null
+	let windowHeight = null
 	let target = null
 	let scene = null
 	let renderer = null
@@ -9,8 +11,16 @@
 	let camera = null
 	let lightAmbient = null
 	let lightSpot = null
-
 	let meshArray = []
+	const mouse = new THREE.Vector2(0, 0)
+	let display = {
+		mode: null,
+		size: {
+			sp: 560,
+			tb: 768,
+		}
+	}
+
 	const BOX_WIDTH = 40
 	const BOX_HEIGHT = 40
 	const BOX_DEPTH = 40
@@ -25,26 +35,31 @@
 	let timeline = null
 
 	window.addEventListener('DOMContentLoaded', () => {
-
 		initialize()
+		resize()
 		animate()
-
 	}, false)
 
 
+	window.addEventListener('resize', () => {
+		resize()
+	}, false)
+
 
 	const initialize = () => {
+		windowWidth = window.innerWidth
+		windowHeight = window.innerHeight
 		target = document.querySelector('#js--mainvisual-canvas')
 		scene = new THREE.Scene()
-		renderer = new THREE.WebGLRenderer({ alpha: true })
-		renderer.setSize(target.clientWidth, target.clientHeight)
-		renderer.setClearColor(0xffffff, 0)
+		renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true })
+		renderer.setSize(windowWidth, windowHeight)
+		renderer.setClearColor('#ffffff', 0)
 		target.appendChild(renderer.domElement)
 
 		fovRad = (FOV / 2) * (Math.PI / 180)
-		dist = (target.clientHeight / 2) / Math.tan(fovRad)
+		dist = (windowHeight / 2) / Math.tan(fovRad)
 
-		camera = new THREE.PerspectiveCamera(FOV, target.clientWidth / target.clientHeight, 1, dist * 2)
+		camera = new THREE.PerspectiveCamera(FOV, windowWidth / windowHeight, 1, dist * 2)
 		camera.position.z = dist
 
 		lightAmbient = new THREE.AmbientLight('#5361b6', 1)
@@ -108,20 +123,27 @@
 	const animate = () => {
 		requestAnimationFrame(animate)
 
+		let scaleMagnification = null
+		if(display.mode === 'pc') {
+			scaleMagnification = 30
+		}else if(display.mode === 'tb') {
+			scaleMagnification = 60
+		}else {
+			scaleMagnification = 90
+		}
+
 		for(let i = 0; i < MESH_ROW_COUNT; i ++) {
 			for(let j = 0; j < MESH_COLUMN_COUNT; j++) {
 				let x = mouse.x - meshArray[i][j].position.x
 				let y = mouse.y - meshArray[i][j].position.y
 				let distance = Math.sqrt(x * x + y * y)
-
 				if(distance < 200) {
-					// console.log(200 - distance)
 					meshArray[i][j].rotation.x += (((200 - distance) * Math.PI / 180) - meshArray[i][j].rotation.x) * 0.1
 					meshArray[i][j].rotation.y += (((200 - distance) * Math.PI / 180) - meshArray[i][j].rotation.y) * 0.1
 					meshArray[i][j].rotation.z += (((200 - distance) * Math.PI / 180) - meshArray[i][j].rotation.z) * 0.1
-					meshArray[i][j].scale.x += ((200 - distance) / 30 - meshArray[i][j].scale.x) * 0.1
-					meshArray[i][j].scale.y += ((200 - distance) / 30 - meshArray[i][j].scale.y) * 0.1
-					meshArray[i][j].scale.z += ((200 - distance) / 30 - meshArray[i][j].scale.z) * 0.1
+					meshArray[i][j].scale.x += ((200 - distance) / scaleMagnification - meshArray[i][j].scale.x) * 0.1
+					meshArray[i][j].scale.y += ((200 - distance) / scaleMagnification - meshArray[i][j].scale.y) * 0.1
+					meshArray[i][j].scale.z += ((200 - distance) / scaleMagnification - meshArray[i][j].scale.z) * 0.1
 				}else {
 					meshArray[i][j].rotation.x += (0 - meshArray[i][j].rotation.x) * 0.1
 					meshArray[i][j].rotation.y += (0 - meshArray[i][j].rotation.y) * 0.1
@@ -132,18 +154,14 @@
 				}
 			}
 		}
-
 		lightSpot.position.set(mouse.x, mouse.y, 100)
-
 		renderer.render(scene, camera)
 	}
 
-	const mouse = new THREE.Vector2(0, 0)
 	const mouseMoved = (x, y) => {
 		if(x && y) {
-			mouse.x = x - (target.clientWidth / 2)
-			mouse.y = -y + (target.clientHeight / 2)
-			// console.log(`mouse.x: ${mouse.x}  mouse.y: ${mouse.y}`)
+			mouse.x = x - (windowWidth / 2)
+			mouse.y = -y + (windowHeight / 2)
 		}
 	}
 
@@ -152,8 +170,33 @@
 		mouseMoved(e.offsetX, e.offsetY)
 	})
 
-	function randRange(min, max) {
+	const randRange = (min, max) => {
 		return Math.floor(Math.random() * (max - min + 1) + min)
+	}
+
+
+	const resize = () => {
+		windowWidth = window.innerWidth
+		windowHeight = window.innerHeight
+
+		renderer.setPixelRatio(window.devicePixelRatio)
+		renderer.setSize(windowWidth, windowHeight)
+
+		const fov = 60
+		const fovRad = (fov / 2) * (Math.PI / 180)
+		const dist = (windowHeight / 2) / Math.tan(fovRad)
+
+		camera = new THREE.PerspectiveCamera(fov, windowWidth / windowHeight, 1, dist * 2)
+		camera.position.z = dist
+
+		if(display.size.tb < windowWidth) {
+			display.mode = 'pc'
+		}else if(display.size.sp < windowWidth) {
+			display.mode = 'tb'
+		}else {
+			display.mode = 'sp'
+		}
+
 	}
 
 })()
