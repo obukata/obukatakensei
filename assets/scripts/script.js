@@ -15,8 +15,8 @@
 	const BOX_HEIGHT = 40
 	const BOX_DEPTH = 40
 	const BOX_MARGIN = 100
-	const MESH_COLUMN_COUNT = 16
-	const MESH_ROW_COUNT = 8
+	const MESH_COLUMN_COUNT = 14
+	const MESH_ROW_COUNT = 6
 
 	let group = null
 	let geometry = null
@@ -26,7 +26,6 @@
 
 	window.addEventListener('DOMContentLoaded', () => {
 
-		Squib.workScroll()
 		initialize()
 		animate()
 
@@ -155,16 +154,6 @@
 
 	function randRange(min, max) {
 		return Math.floor(Math.random() * (max - min + 1) + min)
-	}
-
-	const Squib = {
-		workScroll() {
-			const scroll = new LocomotiveScroll({
-				el: document.querySelector('[data-scroll-container'),
-				smooth: true,
-				direction: 'horizontal'
-			})
-		}
 	}
 
 })()
