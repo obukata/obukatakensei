@@ -35,8 +35,28 @@
 		height: 100%;
 		z-index: -1;
 	}
-}
 
+	.lower-mainvisual-head {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		padding: 30px;
+		width: 100%;
+	}
+	.lower-mainvisual-title {
+		font-size: 6rem;
+	}
+}
+@media (max-width: $InnerMaxWidth_sp), (-ms-high-contrast:none) and (max-width: $InnerMaxWidth_sp + $IEScrollbar) {
+	.mainvisual {
+		.lower-mainvisual-head {
+			padding: 16px;
+		}
+		.lower-mainvisual-title {
+			font-size: 3rem;
+		}
+	}
+}
 
 
 .works {

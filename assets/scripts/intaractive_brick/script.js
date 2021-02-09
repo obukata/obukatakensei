@@ -19,12 +19,12 @@
 	let meshArray = []
 	let mouse = null
 
-	let BOX_WIDTH = 20
-	let BOX_HEIGHT = 20
-	let BOX_DEPTH = 20
-	let BOX_MARGIN = 100
-	let MESH_COLUMN_COUNT = 14
-	let MESH_ROW_COUNT = 6
+	let BOX_WIDTH = 40
+	let BOX_HEIGHT = 40
+	let BOX_DEPTH = 40
+	let BOX_MARGIN = 0
+	let MESH_COLUMN_COUNT = 20
+	let MESH_ROW_COUNT = 20
 
 	let group = null
 	let geometry = null
@@ -62,9 +62,10 @@
 		canvas3d.draw()
 
 		display = new Display(canvas3d, 560, 768)
+		console.log(display.mode)
 
 		perspectiveCamera = new PerspectiveCamera(canvas3d)
-		perspectiveCamera.setFov(10)
+		perspectiveCamera.setFov(30)
 
 		ambientLight = new AmbientLight(canvas3d, '#5361b6')
 		ambientLight.add()
@@ -78,39 +79,32 @@
 		areaLight.add()
 
 
+
 		if(display.mode === 'pc') {
 		}else if(display.mode === 'tb') {
 		}else {
 			BOX_WIDTH = 10
 			BOX_HEIGHT = 10
 			BOX_DEPTH = 10
-			BOX_MARGIN = 50
-			MESH_COLUMN_COUNT = 4
-			MESH_ROW_COUNT = 6
+			BOX_MARGIN = 0
+			MESH_COLUMN_COUNT = 20
+			MESH_ROW_COUNT = 20
 		}
 
 		group = new THREE.Group()
 
-		geometry = [
-			new THREE.BoxGeometry(BOX_WIDTH, BOX_HEIGHT, BOX_DEPTH),
-			new THREE.ConeGeometry(BOX_WIDTH, BOX_HEIGHT * 2, 32),
-			new THREE.CylinderGeometry(BOX_WIDTH, BOX_HEIGHT, BOX_DEPTH, 32),
-			new THREE.OctahedronGeometry(BOX_WIDTH, 0),
-			new THREE.TorusGeometry(BOX_WIDTH, BOX_HEIGHT / 2, 16, 32)
-		]
+		geometry = new THREE.BoxGeometry(BOX_WIDTH, BOX_HEIGHT, BOX_DEPTH)
 		material = [
 			new THREE.MeshToonMaterial({ color: '#8d9dfa' }),
-			new THREE.MeshStandardMaterial({ color: '#8d9dfa', wireframe: true }),
 			new THREE.MeshStandardMaterial({ color: '#8d9dfa', roughness: 0, metalness: 0 }),
 			new THREE.MeshLambertMaterial({ color: '#8d9dfa' })
 		]
-
 
 		timeline = gsap.timeline()
 		for(let i = 0; i < MESH_ROW_COUNT; i ++) {
 			meshArray[i] = []
 			for(let j = 0; j < MESH_COLUMN_COUNT; j++) {
-				meshArray[i][j] = new THREE.Mesh(geometry[randRange(0, geometry.length - 1)], material[randRange(0, material.length - 1)])
+				meshArray[i][j] = new THREE.Mesh(geometry, material[randRange(0, material.length - 1)])
 				if(i % 2) {
 					meshArray[i][j].position.set(
 						(j * BOX_WIDTH) + (j * BOX_MARGIN) - (((MESH_COLUMN_COUNT - 1) * BOX_WIDTH + (MESH_COLUMN_COUNT - 1) * BOX_MARGIN) / 2),
@@ -126,8 +120,6 @@
 					)
 					meshArray[i][j].scale.set(0, 0, 0)
 				}
-				// eventSceneの実装、管理しないと表示アニメーションが恒常animateに潰される。
-				// gsap.to(meshArray[i][j].scale, 1, { ease: Circ.easeOut, x: 0.4, y: 0.4, z: 0.4, delay: j/20 })
 				group.add(meshArray[i][j])
 			}
 		}
@@ -139,7 +131,8 @@
 
 		targetArea.addEventListener('mousemove', e => {
 			mouseMoved(e.offsetX, e.offsetY)
-		})
+		}, false)
+
 	}
 
 	const animate = () => {
@@ -148,14 +141,14 @@
 		let scaleMagnification = null
 		let reactiveArea = null
 		if(display.mode === 'pc') {
-			scaleMagnification = 30
+			scaleMagnification = 1000
 			reactiveArea = 200
 		}else if(display.mode === 'tb') {
 			scaleMagnification = 60
 			reactiveArea = 150
 		}else {
-			scaleMagnification = 60
-			reactiveArea = 100
+			scaleMagnification = 90
+			reactiveArea = 50
 		}
 
 		for(let i = 0; i < MESH_ROW_COUNT; i ++) {
@@ -180,7 +173,6 @@
 				}
 			}
 		}
-		spotLight.set(mouse.x, mouse.y, 100)
 		canvas3d.render(perspectiveCamera.camera)
 	}
 
@@ -190,6 +182,7 @@
 			mouse.y = -y + (canvas3d.height / 2)
 		}
 	}
+
 
 	const randRange = (min, max) => {
 		return Math.floor(Math.random() * (max - min + 1) + min)

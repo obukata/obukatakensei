@@ -124,6 +124,9 @@ body {
 	.header-logo {
 		font-size: 1.7rem;
 		line-height: 1;
+		a {
+			color: $whiteTheme-blue;
+		}
 	}
 	.header-nav {
 	}
@@ -170,6 +173,7 @@ body {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	z-index: 100;
 	.footer-copyright {
 		transform: rotate(90deg);
 		white-space: nowrap;

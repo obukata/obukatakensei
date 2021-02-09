@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<link rel="shortcut icon" href="assets/images/favicon.ico">
+<link rel="shortcut icon" href="../assets/images/favicon.ico">
 <meta name="robots" content="noindex,nofollow">
 <title>Obukata Kensei</title>
 
 <!-- Styles============================================ -->
 <link rel="stylesheet" href="https://use.typekit.net/lqf3gvu.css">
-<link rel="stylesheet" href="assets/styles/core.css">
+<link rel="stylesheet" href="../assets/styles/core.css">
 
 
 <!-- WebFont=========================================== -->
@@ -23,7 +23,7 @@
 <div class="page-wrap">
 	<header class="page-header">
 		<div class="header-body">
-			<div class="header-logo style--font-heavy"><a href="./">Obukata Kensei</a></div>
+			<div class="header-logo style--font-heavy"><a href="../">Obukata Kensei</a></div>
 			<!-- <nav class="header-nav">
 				<div class="header-nav-icon">
 					<div></div><div></div><div></div>
@@ -34,7 +34,11 @@
 
 	<main class="page-main">
 		<div id="js--mainvisual" class="mainvisual">
-			<h1 class="mainvisual-title style--font-heavy">Front-End<br>Documents</h1>
+			<div class="lower-mainvisual-head">
+				<p class="lower-mainvisual-date style--font-heavy">Posted: 2021.02.09</p>
+				<h1 class="lower-mainvisual-title style--font-heavy">Basic shader</h1>
+				<p class="lower-mainvisual-text style--font-bold">ShaderMaterialにて超簡易的なシェーダー</p>
+			</div>
 			<div id="js--mainvisual-canvas" class="mainvisual-canvas"></div>
 		</div>
 	</main>
@@ -42,8 +46,8 @@
 	<aside class="page-aside">
 		<nav class="aside-nav">
 			<ul class="aside-nav-list">
-				<li class="aside-nav-item"><a href="webgl/intaractive_brick.html">Intaractive brick</a></li>
-				<li class="aside-nav-item"><a href="webgl/basic_shader.html">Basic shader</a></li>
+				<li class="aside-nav-item"><a href="./intaractive_brick.html">Intaractive brick</a></li>
+				<li class="aside-nav-item"><a href="./basic_shader.html">Basic shader</a></li>
 			</ul>
 		</nav>
 	</aside>
@@ -58,8 +62,8 @@
 <!-- Scripts=========================================== -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r124/three.min.js"></script>
-<script src="assets/scripts/canvas3d.js"></script>
-<script src="assets/scripts/script.js"></script>
-
+<script src="../assets/scripts/lib/OrbitControls.js"></script>
+<script src="../assets/scripts/canvas3d.js"></script>
+<script src="../assets/scripts/basic_shader/script.js"></script>
 </body>
 </html>

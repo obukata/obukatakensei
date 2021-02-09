@@ -4256,6 +4256,9 @@ html[lang=en] body {
   font-size: 1.7rem;
   line-height: 1;
 }
+.page-header .header-logo a {
+  color: #5361b6;
+}
 .page-header .header-nav-icon {
   height: 14px;
   display: flex;
@@ -4284,6 +4287,7 @@ html[lang=en] body {
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 100;
 }
 .page-footer .footer-copyright {
   transform: rotate(90deg);
@@ -4777,7 +4781,25 @@ html[lang=en] body {
   height: 100%;
   z-index: -1;
 }
+.mainvisual .lower-mainvisual-head {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 30px;
+  width: 100%;
+}
+.mainvisual .lower-mainvisual-title {
+  font-size: 6rem;
+}
 
+@media (max-width: 560px), (-ms-high-contrast: none) and (max-width: 577px) {
+  .mainvisual .lower-mainvisual-head {
+    padding: 16px;
+  }
+  .mainvisual .lower-mainvisual-title {
+    font-size: 3rem;
+  }
+}
 .works {
   width: 100vw;
   position: relative;
