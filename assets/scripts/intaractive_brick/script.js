@@ -62,7 +62,6 @@
 		canvas3d.draw()
 
 		display = new Display(canvas3d, 560, 768)
-		console.log(display.mode)
 
 		perspectiveCamera = new PerspectiveCamera(canvas3d)
 		perspectiveCamera.setFov(30)
@@ -131,6 +130,12 @@
 
 		targetArea.addEventListener('mousemove', e => {
 			mouseMoved(e.offsetX, e.offsetY)
+		}, false)
+
+		targetArea.addEventListener('click', e => {
+			for(let i = 0; i < material.length; i++) {
+				material[i].wireframe = material[i].wireframe ? false: true
+			}
 		}, false)
 
 	}

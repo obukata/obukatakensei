@@ -6,7 +6,7 @@
 //*------------------------------------------------------------------------------*/
 
 .mainvisual {
-	height: 100vh;
+	min-height: 100vh;
 	width: 100vw;
 	display: flex;
 	justify-content: center;
@@ -55,6 +55,13 @@
 		.lower-mainvisual-title {
 			font-size: 3rem;
 		}
+	}
+}
+/* Avoid Chrome to see Safari hack */
+@supports (-webkit-touch-callout: none) {
+	.mainvisual {
+		/* The hack for Safari */
+		min-height: -webkit-fill-available;
 	}
 }
 
