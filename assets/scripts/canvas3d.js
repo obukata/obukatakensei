@@ -54,6 +54,7 @@ class AmbientLight {
 		this.canvas3d = canvas3d
 		this.color = color ? color : '#ffffff'
 		this.light = new THREE.AmbientLight(this.color, 1)
+		this.light.castShadow = true
 	}
 	add() {
 		this.canvas3d.scene.add(this.light)
@@ -84,6 +85,7 @@ class AreaLight {
 		this.color = color ? color : '#ffffff'
 		this.light = new THREE.RectAreaLight(this.color, 1, 2000, 2000)
 		this.light.lookAt(0, 0, 0)
+		this.light.castShadow = true
 	}
 	set(x, y, z) {
 		this.x = x
