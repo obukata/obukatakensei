@@ -19,12 +19,12 @@
 	let meshArray = []
 	let texture = null
 
-	const BOX_WIDTH = 667 / 5
-	const BOX_HEIGHT = 375 / 5
-	const BOX_COLUMN = 16
-	const BOX_COLUMN_MARGIN = 60
-	const BOX_ROW = 4
-	const BOX_ROW_MARGIN = 20
+	let BOX_WIDTH = null
+	let BOX_HEIGHT = null
+	let BOX_COLUMN = null
+	let BOX_COLUMN_MARGIN = null
+	let BOX_ROW = null
+	let BOX_ROW_MARGIN = null
 
 	let timeline = null
 
@@ -73,6 +73,13 @@
 		areaLight.set(0, 0, 400)
 		areaLight.add()
 
+		BOX_WIDTH =  perspectiveCamera.dist / 8
+		BOX_HEIGHT = perspectiveCamera.dist / 8 * 0.5622188906
+		BOX_COLUMN = 16
+		BOX_COLUMN_MARGIN = 60
+		BOX_ROW = 4
+		BOX_ROW_MARGIN = perspectiveCamera.dist / 80
+
 		texture = new THREE.TextureLoader()
 		geometry = new THREE.PlaneGeometry(BOX_WIDTH, BOX_HEIGHT, 1)
 		material = [
@@ -90,13 +97,14 @@
 			new THREE.MeshLambertMaterial({ map: texture.load('../assets/images/webgl/movie_gallery/image12.jpg') })
 		]
 
+
 		for(let i = 0; i < BOX_ROW; i++) {
 			meshArray[i] = []
 			for(let j = 0; j < BOX_COLUMN; j++) {
 				meshArray[i][j] = new THREE.Mesh(geometry, material[randRange(0, material.length - 1)])
-				meshArray[i][j].position.x = Math.cos(((360 / BOX_COLUMN * j) + (BOX_COLUMN * i)) * Math.PI / 180) * 400
+				meshArray[i][j].position.x = Math.cos(((360 / BOX_COLUMN * j) + (BOX_COLUMN * i)) * Math.PI / 180) * perspectiveCamera.dist / 3
 				meshArray[i][j].position.y = i * (BOX_HEIGHT + BOX_ROW_MARGIN)
-				meshArray[i][j].position.z = (Math.sin(((360 / BOX_COLUMN * j) + (BOX_COLUMN * i)) * Math.PI / 180) * 400) + perspectiveCamera.dist
+				meshArray[i][j].position.z = (Math.sin(((360 / BOX_COLUMN * j) + (BOX_COLUMN * i)) * Math.PI / 180) * perspectiveCamera.dist / 3) + perspectiveCamera.dist
 				meshArray[i][j].rotation.y = (270 - ((360 / BOX_COLUMN * j) + (BOX_COLUMN * i))) * Math.PI / 180
 				canvas3d.scene.add(meshArray[i][j])
 			}
@@ -107,7 +115,8 @@
 		}, false)
 
 		targetArea.addEventListener('mousemove', e => {
-			mouseMoved(e.offsetX, e.offsetY)
+			mouseMovedPxcel(e.offsetX, e.offsetY)
+			mouseMovedRaycaster()
 		}, false)
 
 		targetArea.addEventListener('click', e => {
@@ -124,17 +133,21 @@
 	const animate = () => {
 		requestAnimationFrame(animate)
 
-		perspectiveCamera.camera.position.y = 120
+		perspectiveCamera.camera.position.y = (perspectiveCamera.dist / 8 * 0.5622188906) * 1.7
 		perspectiveCamera.camera.rotation.y += 0.02 * Math.PI / 180
 
 		canvas3d.render(perspectiveCamera.camera)
 	}
 
-	const mouseMoved = (x, y) => {
+	const mouseMovedPxcel = (x, y) => {
 		if(x && y) {
 			mouse.x = x / canvas3d.width
 			mouse.y = 1.0 - (y / canvas3d.height)
 		}
+	}
+
+	const mouseMovedRaycaster = (event) => {
+		// console.log(event)
 	}
 
 	const randRange = (min, max) => {
@@ -146,6 +159,22 @@
 		canvas3d.update()
 		perspectiveCamera.resize()
 		display.update()
+
+		BOX_WIDTH = perspectiveCamera.dist / 8
+		BOX_HEIGHT = perspectiveCamera.dist / 8 * 0.5622188906
+		BOX_ROW_MARGIN = perspectiveCamera.dist / 80
+
+		for(let i = 0; i < BOX_ROW; i++) {
+			for(let j = 0; j < BOX_COLUMN; j++) {
+				meshArray[i][j].position.x = Math.cos(((360 / BOX_COLUMN * j) + (BOX_COLUMN * i)) * Math.PI / 180) * perspectiveCamera.dist / 3
+				meshArray[i][j].position.y = i * (BOX_HEIGHT + BOX_ROW_MARGIN)
+				meshArray[i][j].position.z = (Math.sin(((360 / BOX_COLUMN * j) + (BOX_COLUMN * i)) * Math.PI / 180) * perspectiveCamera.dist / 3) + perspectiveCamera.dist
+				meshArray[i][j].rotation.y = (270 - ((360 / BOX_COLUMN * j) + (BOX_COLUMN * i))) * Math.PI / 180
+				meshArray[i][j].scale.x = (perspectiveCamera.dist / 8) / meshArray[0][0].geometry.parameters.width
+				meshArray[i][j].scale.y = meshArray[i][j].scale.x
+			}
+		}
+
 	}
 
 })()
