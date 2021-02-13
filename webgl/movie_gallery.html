@@ -47,6 +47,13 @@
 				<p class="lower-mainvisual-text style--font-bold">映画の3Dギャラリー的な感じ。意外と良い感じになった？</p>
 			</div>
 			<div id="js--mainvisual-canvas" class="mainvisual-canvas"></div>
+			<div id="js--movie-modal" class="movie-modal">
+				<div class="movie-modal-body">
+					<div class="movie-modal-icon"></div>
+					<div class="movie-modal-img"></div>
+					<div class="movie-modal-text style--font-heavy"></div>
+				</div>
+			</div>
 		</div>
 	</main>
 
@@ -56,6 +63,61 @@
 
 </div>
 
+<style>
+.movie-modal.is--modal-open {
+	opacity: 1;
+	visibility: visible;
+}
+.movie-modal {
+	opacity: 0;
+	transition: all 400ms;
+	max-width: 100%;
+	padding: 0 32px;
+	visibility: hidden;
+}
+.movie-modal-body {
+	background: #000;
+	padding: 16px;
+	position: relative;
+}
+.movie-modal-icon {
+	position: absolute;
+	top: -1em;
+	right: -1em;
+	width: 4em;
+	height: 4em;
+	background: #000;
+	border-radius: 1000px;
+}
+.movie-modal-icon::before,
+.movie-modal-icon::after {
+	content: "";
+	width: 2em;
+	height: 2px;
+	background: #fff;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	margin: auto;
+}
+.movie-modal-icon::before {
+	transform: rotate(45deg);
+}
+.movie-modal-icon::after {
+	transform: rotate(-45deg);
+}
+.movie-modal-img img {
+	max-width: 100%;
+}
+.movie-modal-text {
+	font-size: 2rem;
+	text-align: center;
+	margin-top: .5em;
+	color: #fff;
+}
+</style>
 
 <!-- Scripts=========================================== -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js"></script>
