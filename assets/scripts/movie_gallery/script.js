@@ -76,18 +76,18 @@
 		texture = new THREE.TextureLoader()
 		geometry = new THREE.PlaneGeometry(BOX_WIDTH, BOX_HEIGHT, 1)
 		material = [
-			new THREE.MeshLambertMaterial({ map: texture.load('../../assets/images/webgl/movie_gallery/image1.jpg') }),
-			new THREE.MeshLambertMaterial({ map: texture.load('../../assets/images/webgl/movie_gallery/image2.jpg') }),
-			new THREE.MeshLambertMaterial({ map: texture.load('../../assets/images/webgl/movie_gallery/image3.jpg') }),
-			new THREE.MeshLambertMaterial({ map: texture.load('../../assets/images/webgl/movie_gallery/image4.jpg') }),
-			new THREE.MeshLambertMaterial({ map: texture.load('../../assets/images/webgl/movie_gallery/image5.jpg') }),
-			new THREE.MeshLambertMaterial({ map: texture.load('../../assets/images/webgl/movie_gallery/image6.jpg') }),
-			new THREE.MeshLambertMaterial({ map: texture.load('../../assets/images/webgl/movie_gallery/image7.jpg') }),
-			new THREE.MeshLambertMaterial({ map: texture.load('../../assets/images/webgl/movie_gallery/image8.jpg') }),
-			new THREE.MeshLambertMaterial({ map: texture.load('../../assets/images/webgl/movie_gallery/image9.jpg') }),
-			new THREE.MeshLambertMaterial({ map: texture.load('../../assets/images/webgl/movie_gallery/image10.jpg') }),
-			new THREE.MeshLambertMaterial({ map: texture.load('../../assets/images/webgl/movie_gallery/image11.jpg') }),
-			new THREE.MeshLambertMaterial({ map: texture.load('../../assets/images/webgl/movie_gallery/image12.jpg') })
+			new THREE.MeshLambertMaterial({ map: texture.load('../assets/images/webgl/movie_gallery/image1.jpg') }),
+			new THREE.MeshLambertMaterial({ map: texture.load('../assets/images/webgl/movie_gallery/image2.jpg') }),
+			new THREE.MeshLambertMaterial({ map: texture.load('../assets/images/webgl/movie_gallery/image3.jpg') }),
+			new THREE.MeshLambertMaterial({ map: texture.load('../assets/images/webgl/movie_gallery/image4.jpg') }),
+			new THREE.MeshLambertMaterial({ map: texture.load('../assets/images/webgl/movie_gallery/image5.jpg') }),
+			new THREE.MeshLambertMaterial({ map: texture.load('../assets/images/webgl/movie_gallery/image6.jpg') }),
+			new THREE.MeshLambertMaterial({ map: texture.load('../assets/images/webgl/movie_gallery/image7.jpg') }),
+			new THREE.MeshLambertMaterial({ map: texture.load('../assets/images/webgl/movie_gallery/image8.jpg') }),
+			new THREE.MeshLambertMaterial({ map: texture.load('../assets/images/webgl/movie_gallery/image9.jpg') }),
+			new THREE.MeshLambertMaterial({ map: texture.load('../assets/images/webgl/movie_gallery/image10.jpg') }),
+			new THREE.MeshLambertMaterial({ map: texture.load('../assets/images/webgl/movie_gallery/image11.jpg') }),
+			new THREE.MeshLambertMaterial({ map: texture.load('../assets/images/webgl/movie_gallery/image12.jpg') })
 		]
 
 		for(let i = 0; i < BOX_ROW; i++) {
