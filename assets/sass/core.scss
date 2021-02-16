@@ -126,6 +126,10 @@ body {
 			color: $whiteTheme-blue;
 		}
 	}
+	.header-nav-wrap {
+		background: rgba(255, 255, 255, .4);
+		padding: 16px;
+	}
 	.header-nav {
 		margin-top: 64px;
 	}
