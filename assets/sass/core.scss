@@ -94,6 +94,7 @@ body {
 	background: $whiteTheme-white;
 	position: relative;
 	overflow: hidden;
+	z-index: 0;
 }
 @media (max-width: $InnerMinWidth), (-ms-high-contrast:none) and (max-width: $InnerMinWidth + $IEScrollbar) {
 	.page-wrap {

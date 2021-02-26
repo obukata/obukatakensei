@@ -1,4 +1,6 @@
-class Canvas3d {
+import * as THREE from 'three'
+
+export class Canvas3d {
 	constructor(target) {
 		this.target = target
 		this.width = window.innerWidth
@@ -25,7 +27,7 @@ class Canvas3d {
 	}
 }
 
-class PerspectiveCamera {
+export class PerspectiveCamera {
 	constructor(canvas3d) {
 		this.canvas3d = canvas3d
 		this.FOV = 60
@@ -49,7 +51,7 @@ class PerspectiveCamera {
 }
 
 
-class AmbientLight {
+export class AmbientLight {
 	constructor(canvas3d, color) {
 		this.canvas3d = canvas3d
 		this.color = color ? color : '#ffffff'
@@ -61,7 +63,7 @@ class AmbientLight {
 	}
 }
 
-class SpotLight {
+export class SpotLight {
 	constructor(canvas3d, color) {
 		this.canvas3d = canvas3d
 		this.color = color ? color : '#ffffff'
@@ -79,7 +81,7 @@ class SpotLight {
 	}
 }
 
-class AreaLight {
+export class AreaLight {
 	constructor(canvas3d, color) {
 		this.canvas3d = canvas3d
 		this.color = color ? color : '#ffffff'
@@ -98,7 +100,7 @@ class AreaLight {
 	}
 }
 
-class Display {
+export class Display {
 	constructor(canvas3d, sp, tb) {
 		this.canvas3d = canvas3d
 		this.mode = null

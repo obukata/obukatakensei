@@ -1,3 +1,6 @@
+import * as THREE from 'three'
+import {Canvas3d, PerspectiveCamera, AmbientLight, SpotLight, AreaLight, Display} from '/assets/scripts/canvas3d.js'
+
 (function() {
 
 /*====================================
@@ -22,6 +25,10 @@
 	let meshArray = []
 	let meshList = []
 	let texture = null
+
+	let ambientLight = null
+	let spotLight = null
+	let areaLight = null
 
 	let BOX_WIDTH = null
 	let BOX_HEIGHT = null

@@ -4239,6 +4239,7 @@ html[lang=en] body {
   background: #f7f7f7;
   position: relative;
   overflow: hidden;
+  z-index: 0;
 }
 
 .page-header {
@@ -4876,7 +4877,6 @@ html[lang=en] body {
   left: 0;
   z-index: 100;
   padding: 30px;
-  width: 100%;
 }
 .mainvisual .lower-mainvisual-title {
   font-size: 6rem;
