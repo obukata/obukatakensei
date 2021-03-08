@@ -1,5 +1,6 @@
 import * as THREE from 'three'
 import { Canvas3d, PerspectiveCamera, AmbientLight, SpotLight, AreaLight, Display } from '/assets/scripts/canvas3d.js'
+import { gsap } from 'gsap'
 
 (function() {
 

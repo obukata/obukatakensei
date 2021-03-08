@@ -53,7 +53,7 @@ import * as dat from 'dat.gui'
 		initialize()
 		create()
 		render()
-		debug()
+		// debug()
 		tick()
 	})
 
