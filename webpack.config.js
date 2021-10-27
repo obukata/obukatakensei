@@ -9,6 +9,7 @@ const entryFile = {
 	loopAnimation: path.resolve(__dirname, 'assets/scripts/webgl/loop_animation/script.js'),
 	earth: path.resolve(__dirname, 'assets/scripts/webgl/earth/script.js'),
 	galaxy: path.resolve(__dirname, 'assets/scripts/webgl/galaxy/script.js'),
+	photoGallery: path.resolve(__dirname, 'assets/scripts/webgl/photo_gallery/script.js'),
 }
 
 

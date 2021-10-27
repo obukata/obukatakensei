@@ -169,6 +169,7 @@ import {Canvas3d, PerspectiveCamera, AmbientLight, SpotLight, AreaLight, Display
 
 		meshList.map(mesh => {
 			if(0 < intersects.length && mesh == intersects[0].object) {
+				console.log(intersects[0].object)
 				mesh.scale.x += (((perspectiveCamera.dist / 8) / meshArray[0][0].geometry.parameters.width) * 1.1 - mesh.scale.x) * 0.1
 				mesh.scale.y += (((perspectiveCamera.dist / 8) / meshArray[0][0].geometry.parameters.width) * 1.1 - mesh.scale.y) * 0.1
 			}else {
